@@ -1,10 +1,6 @@
 package com.codecool.app;
 
-public class QSViewConsoleImp implements QSView{
-    @Override
-    public void println(String text) {
-        System.out.println(text);
-    }
+public class QSViewConsoleImp extends ViewConsoleImp implements QSView{
 
     @Override
     public void printMenu(String[] options) {

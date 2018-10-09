@@ -1,5 +1,7 @@
 package com.codecool.app;
 
+import java.util.NoSuchElementException;
+
 public class QuestStore {
     private final String[] MENU_OPTIONS = {"Login", "Exit"};
     private QSView view;
@@ -21,12 +23,21 @@ public class QuestStore {
                 case "1":
                     logIn();
                     break;
+                case "2":
+                    isRunning = false;
+                    break;
             }
         }
     }
 
     private void logIn(){
         LoginController loginController = new LoginController(new LoginViewConsoleImp());
-
+        try{
+            loginController.logIn();
+            // TO DO
+            // Run controller for logged user
+        } catch (NoSuchElementException e){
+            view.printError(e.getMessage());
+        }
     }
 }

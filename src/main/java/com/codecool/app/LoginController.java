@@ -4,30 +4,43 @@ import java.util.NoSuchElementException;
 
 public class LoginController {
     private final String USER_NOT_LOGGED_ERROR = "No user is logged in";
+    private final String USER_NOT_REGISTERED_ERROR = "Entered nickname and passwords doesn\'t match";
 
-    private LoginView view;
+    private LoginView loginView;
     private Account loggedAccount;
     private boolean isUserLogged;
 
-    public LoginController(LoginView view){
-        this.view = view;
+    public LoginController(LoginView loginView){
+        this.loginView = loginView;
         isUserLogged = false;
     }
 
     public void logIn(){
-        loggedAccount = view.getAccount();
-        isUserLogged = true;
+        Account userTryingToLogIn = loginView.getAccount();
+        if (isAccountRegistered(userTryingToLogIn)){
+            loggedAccount = userTryingToLogIn;
+            isUserLogged = true;
+        } else {
+            throw new NoSuchElementException(USER_NOT_REGISTERED_ERROR);
+        }
     }
 
     public void logOut(){
         isUserLogged = false;
     }
 
-    public Account getLoggedAccount(){
-        if (isUserLogged){
-            return loggedAccount;
-        }
+    public boolean isUserLogged(){
+        return isUserLogged;
+    }
 
-        throw new NoSuchElementException(USER_NOT_LOGGED_ERROR);
+    public Account getLoggedAccount(){
+        return loggedAccount;
+    }
+
+    private boolean isAccountRegistered(Account account){
+        // TO DO
+        // Check if account really exist in database
+        // Set account access level due to data in database
+        return false;
     }
 }

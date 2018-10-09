@@ -4,7 +4,6 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public abstract class ViewConsoleImp implements View{
-    Scanner scanner;
     private final String EMPTY_INPUT_ERROR = "Input is empty";
 
     @Override
@@ -14,19 +13,18 @@ public abstract class ViewConsoleImp implements View{
 
     @Override
     public String getInput() throws NoSuchElementException {
-        String result;
-
-        try{
-            scanner = new Scanner(System.in);
-            result = scanner.next().trim();
-        } catch (NoSuchElementException e){
-            throw e;
-        }
+        Scanner scanner = new Scanner(System.in);
+        String result = scanner.next().trim();
 
         if (result.length() < 1){
             throw new NoSuchElementException(EMPTY_INPUT_ERROR);
         }
 
         return result;
+    }
+
+    @Override
+    public void printError(String err) {
+        println(String.format(" !!! %s", err));
     }
 }

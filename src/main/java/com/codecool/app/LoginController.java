@@ -3,6 +3,8 @@ package com.codecool.app;
 import java.util.NoSuchElementException;
 
 public class LoginController {
+    private final String USER_NOT_LOGGED_ERROR = "No user is logged in";
+
     private LoginView view;
     private Account loggedAccount;
     private boolean isUserLogged;
@@ -22,14 +24,10 @@ public class LoginController {
     }
 
     public Account getLoggedAccount(){
-        if (isUserLogged()){
+        if (isUserLogged){
             return loggedAccount;
         }
 
-        throw new NoSuchElementException("");
-    }
-
-    public boolean isUserLogged(){
-        return isUserLogged();
+        throw new NoSuchElementException(USER_NOT_LOGGED_ERROR);
     }
 }

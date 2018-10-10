@@ -1,11 +1,11 @@
 package com.codecool.app;
 
 import com.codecool.app.view.QSView;
-import com.codecool.app.view.consoleimpl.QSViewConsoleImp;
+import com.codecool.app.view.consoleimpl.QSViewConsoleImpl;
 
 public class Main {
     public static void main(String[] args){
-        QSView qsView = new QSViewConsoleImp();
+        QSView qsView = new QSViewConsoleImpl();
         QuestStore questStore = new QuestStore(qsView);
         questStore.run();
     }

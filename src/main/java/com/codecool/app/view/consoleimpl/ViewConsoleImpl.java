@@ -5,7 +5,7 @@ import com.codecool.app.view.View;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-public abstract class ViewConsoleImp implements View {
+public abstract class ViewConsoleImpl implements View {
     private final String EMPTY_INPUT_ERROR = "Input is empty";
 
     @Override

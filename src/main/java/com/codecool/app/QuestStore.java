@@ -2,7 +2,7 @@ package com.codecool.app;
 
 import com.codecool.app.login.LoginController;
 import com.codecool.app.view.QSView;
-import com.codecool.app.view.consoleimpl.LoginViewConsoleImp;
+import com.codecool.app.view.consoleimpl.LoginViewConsoleImpl;
 
 import java.util.NoSuchElementException;
 
@@ -35,7 +35,7 @@ public class QuestStore {
     }
 
     private void logIn(){
-        LoginController loginController = new LoginController(new LoginViewConsoleImp());
+        LoginController loginController = new LoginController(new LoginViewConsoleImpl());
         try{
             loginController.logIn();
             // TO DO

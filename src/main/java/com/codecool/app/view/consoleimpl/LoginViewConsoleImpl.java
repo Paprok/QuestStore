@@ -4,10 +4,10 @@ import com.codecool.app.login.Account;
 import com.codecool.app.login.LoginMessages;
 import com.codecool.app.view.LoginView;
 
-public class LoginViewConsoleImp extends ViewConsoleImp implements LoginView {
+public class LoginViewConsoleImpl extends ViewConsoleImpl implements LoginView {
     LoginMessages loginMessages;
 
-    public LoginViewConsoleImp(){
+    public LoginViewConsoleImpl(){
         loginMessages = new LoginMessages();
     }
 

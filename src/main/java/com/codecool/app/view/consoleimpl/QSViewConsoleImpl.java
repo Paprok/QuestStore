@@ -2,7 +2,7 @@ package com.codecool.app.view.consoleimpl;
 
 import com.codecool.app.view.QSView;
 
-public class QSViewConsoleImp extends ViewConsoleImp implements QSView {
+public class QSViewConsoleImpl extends ViewConsoleImpl implements QSView {
 
     @Override
     public void printMenu(String[] options) {

@@ -14,11 +14,7 @@ public class SQLConnector {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM applicants;");
         System.out.println("Opened database successfully");
-        resultSet.next();
-        System.out.println(resultSet.getString(2));
     }
 
     public static Connection getConnection(){

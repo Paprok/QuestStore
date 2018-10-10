@@ -1,5 +1,6 @@
 package com.codecool.app;
 
+import com.codecool.app.connectors.SQLConnector;
 import com.codecool.app.view.QSView;
 import com.codecool.app.view.consoleimpl.QSViewConsoleImpl;
 

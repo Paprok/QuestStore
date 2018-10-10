@@ -1,8 +1,8 @@
-﻿-- Table: queststore.accounts
+﻿-- Table: public.accounts
 
--- DROP TABLE queststore.accounts;
+-- DROP TABLE public.accounts;
 
-CREATE TABLE queststore.accounts
+CREATE TABLE public.accounts
 (
   nick text NOT NULL,
   type text NOT NULL,
@@ -12,5 +12,5 @@ CREATE TABLE queststore.accounts
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE queststore.accounts
+ALTER TABLE public.accounts
   OWNER TO queststore;

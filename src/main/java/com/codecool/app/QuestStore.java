@@ -59,8 +59,10 @@ public class QuestStore {
         switch (loggedUser.getAccessLevel()){
             case ADMIN:
                 return new AdminController();
-            // case MENTOR
-            // case CODECOOLER
+            case MENTOR:
+                return new MentorController();
+            case CODECOOLER:
+                return new CodecoolerController();
         }
 
         throw new IllegalAccessException(NO_ACCESS_ERROR);

@@ -1,4 +1,4 @@
-package com.codecool.app;
+package com.codecool.app.login;
 
 public class LoginMessages {
     private final String ASK_FOR_NICKNAME = "Please enter nickname:";

@@ -1,4 +1,8 @@
-package com.codecool.app;
+package com.codecool.app.view.consoleimpl;
+
+import com.codecool.app.login.Account;
+import com.codecool.app.login.LoginMessages;
+import com.codecool.app.view.LoginView;
 
 public class LoginViewConsoleImp extends ViewConsoleImp implements LoginView {
     LoginMessages loginMessages;

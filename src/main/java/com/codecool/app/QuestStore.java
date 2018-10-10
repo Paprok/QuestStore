@@ -1,5 +1,9 @@
 package com.codecool.app;
 
+import com.codecool.app.login.LoginController;
+import com.codecool.app.view.QSView;
+import com.codecool.app.view.consoleimpl.LoginViewConsoleImp;
+
 import java.util.NoSuchElementException;
 
 public class QuestStore {

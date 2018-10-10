@@ -1,4 +1,4 @@
-package com.codecool.app;
+package com.codecool.app.login;
 
 public class Account {
     private String nickname;

@@ -1,4 +1,6 @@
-package com.codecool.app;
+package com.codecool.app.login;
+
+import com.codecool.app.view.LoginView;
 
 import java.util.NoSuchElementException;
 

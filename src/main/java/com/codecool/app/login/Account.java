@@ -8,10 +8,15 @@ public class Account {
     public Account(String nickname, String password){
         this.nickname = nickname;
         this.password = password;
+        accessLevel = AccessLevel.NOBODY;
     }
 
     public String getNickname() {
         return nickname;
+    }
+
+    public String getPassword(){
+        return password;
     }
 
     public void setAccessLevel(AccessLevel accessLevel) {
@@ -20,9 +25,5 @@ public class Account {
 
     public AccessLevel getAccessLevel(){
         return accessLevel;
-    }
-
-    public boolean comparePassword(String input){
-        return password.equals(input);
     }
 }

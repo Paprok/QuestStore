@@ -4,6 +4,8 @@ import com.codecool.app.login.Account;
 import com.codecool.app.login.LoginMessages;
 import com.codecool.app.view.LoginView;
 
+import java.util.NoSuchElementException;
+
 public class LoginViewConsoleImpl extends ViewConsoleImpl implements LoginView {
     LoginMessages loginMessages;
 
@@ -12,7 +14,7 @@ public class LoginViewConsoleImpl extends ViewConsoleImpl implements LoginView {
     }
 
     @Override
-    public Account getAccount() {
+    public Account getAccount() throws NoSuchElementException {
         String nickname, password;
 
         println(loginMessages.getASK_FOR_NICKNAME());

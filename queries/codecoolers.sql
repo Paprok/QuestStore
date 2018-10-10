@@ -1,6 +1,6 @@
 ﻿-- Table: public.codecoolers
 
-DROP TABLE public.codecoolers;
+-- DROP TABLE public.codecoolers;
 
 CREATE TABLE public.codecoolers
 (

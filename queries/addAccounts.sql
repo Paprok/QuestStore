@@ -1,3 +1,3 @@
-NSERT INTO accounts (nick, type, password)
+﻿INSERT INTO accounts (nick, type, password)
 VALUES ('admin', 'ADMIN', 'admin');
 

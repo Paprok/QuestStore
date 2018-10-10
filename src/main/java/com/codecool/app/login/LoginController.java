@@ -19,15 +19,8 @@ public class LoginController {
 
     public void logIn() throws NoSuchElementException{
         Account userTryingToLogIn = loginView.getAccount();
-        Account accountWithCorrespondingNicknameInDB
-                = getAccountWithCorrespondingNicknameFromDB(userTryingToLogIn.getNickname());
-
-        if (isPasswordValid(userTryingToLogIn, accountWithCorrespondingNicknameInDB)){
-            loggedAccount = accountWithCorrespondingNicknameInDB;
-            isUserLogged = true;
-        } else {
-            throw new NoSuchElementException(USER_NOT_REGISTERED_ERROR);
-        }
+        loggedAccount = getCorrespondingAccountFromDB(userTryingToLogIn);
+        isUserLogged = true;
     }
 
     public void logOut(){
@@ -42,13 +35,9 @@ public class LoginController {
         return loggedAccount;
     }
 
-    private Account getAccountWithCorrespondingNicknameFromDB(String nickname){
+    private Account getCorrespondingAccountFromDB(Account userTryingToLogIn){
         // Get account from DB and return it if exists
 
         throw new NoSuchElementException(USER_NOT_REGISTERED_ERROR);
-    }
-
-    private boolean isPasswordValid(Account userTryingToLigIn, Account accountWithCorrespondingNickname){
-        return userTryingToLigIn.getPassword().equals(accountWithCorrespondingNickname.getPassword());
     }
 }

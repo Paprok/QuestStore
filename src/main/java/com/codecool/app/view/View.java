@@ -1,4 +1,4 @@
-package com.codecool.app;
+package com.codecool.app.view;
 
 public interface View {
     public void println(String text);

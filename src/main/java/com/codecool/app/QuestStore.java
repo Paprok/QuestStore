@@ -1,6 +1,8 @@
 package com.codecool.app;
 
+import com.codecool.app.login.Account;
 import com.codecool.app.login.LoginController;
+import com.codecool.app.usercontrollers.*;
 import com.codecool.app.view.QSView;
 import com.codecool.app.view.consoleimpl.LoginViewConsoleImpl;
 
@@ -8,8 +10,8 @@ import java.util.NoSuchElementException;
 
 public class QuestStore {
     private final String[] MENU_OPTIONS = {"Login", "Exit"};
+    private final String NO_ACCESS_ERROR = "Controller for user with given access level is not implemented";
     private QSView view;
-    private LoginController loginController;
 
     public QuestStore(QSView view){
         this.view = view;
@@ -25,7 +27,7 @@ public class QuestStore {
             choice = view.getInput();
             switch (choice){
                 case "1":
-                    logIn();
+                    logInAndRunControllerForUser();
                     break;
                 case "2":
                     isRunning = false;
@@ -34,14 +36,33 @@ public class QuestStore {
         }
     }
 
-    private void logIn(){
+    private void logInAndRunControllerForUser(){
         LoginController loginController = new LoginController(new LoginViewConsoleImpl());
+
         try{
             loginController.logIn();
-            // TO DO
-            // Run controller for logged user
         } catch (NoSuchElementException e){
             view.printError(e.getMessage());
+            return;
         }
+
+        try{
+            UserController userController = getControllerForUser(loginController.getLoggedAccount());
+            userController.run();
+        } catch (IllegalAccessException e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    private UserController getControllerForUser(Account loggedUser) throws IllegalAccessException{
+        switch (loggedUser.getAccessLevel()){
+            case ADMIN:
+                return new AdminController();
+            // case MENTOR
+            // case CODECOOLER
+        }
+
+        throw new IllegalAccessException(NO_ACCESS_ERROR);
     }
 }

@@ -9,7 +9,10 @@ import com.codecool.app.user.view.AdminView;
 import java.util.NoSuchElementException;
 
 public class AdminController implements UserController{
-    private final String[] ADMIN_OPTIONS = {"Create new account", "Exit"};
+    private final String[] ADMIN_OPTIONS = {
+            "Create new account", "Show Mentors", "View Mentor's details",
+            "Edit Mentor", "Create class", "Create level of experience", "Exit"
+    };
     private ErrorMessages errorMessages;
     private AdminView view;
     private AppDAOs appDAOs;
@@ -45,6 +48,8 @@ public class AdminController implements UserController{
                 handleCreatingAccount();
                 break;
             case "2":
+                
+            case "7":
                 isRunning = false;
                 break;
             default:

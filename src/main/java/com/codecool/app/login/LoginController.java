@@ -1,5 +1,6 @@
 package com.codecool.app.login;
 
+import com.codecool.app.messages.ErrorMessages;
 import com.codecool.app.messages.LoginMessages;
 import com.codecool.app.view.LoginView;
 
@@ -7,13 +8,13 @@ import java.util.NoSuchElementException;
 
 public class LoginController {
     private LoginView loginView;
-    private LoginMessages loginMessages;
+    private ErrorMessages errorMessages;
     private Account loggedAccount;
     private boolean isUserLogged;
 
     public LoginController(LoginView loginView){
         this.loginView = loginView;
-        loginMessages = new LoginMessages();
+        errorMessages = new ErrorMessages();
         isUserLogged = false;
     }
 
@@ -39,6 +40,6 @@ public class LoginController {
         // Get account from DB and return it if exists
         // Set account id
 
-        throw new NoSuchElementException(loginMessages.getUSER_NOT_REGISTERED_MESSAGE());
+        throw new NoSuchElementException(errorMessages.getUSER_NOT_REGISTERED_MESSAGE());
     }
 }

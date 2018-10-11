@@ -5,6 +5,7 @@ import com.codecool.app.login.Account;
 import com.codecool.app.messages.AdminMessages;
 import com.codecool.app.messages.ErrorMessages;
 import com.codecool.app.messages.LoginMessages;
+import com.codecool.app.messages.UserCreationMessages;
 import com.codecool.app.user.model.Mentor;
 import com.codecool.app.user.view.AdminView;
 import com.codecool.app.view.consoleimpl.QSViewConsoleImpl;
@@ -53,5 +54,20 @@ public class AdminViewConsoleImpl extends QSViewConsoleImpl implements AdminView
                 printError(new ErrorMessages().getNO_ACCESS_MESSAGE());
             }
         }
+    }
+
+    @Override
+    public Mentor getMentorInformation() {
+        UserCreationMessages userCreationMessages = new UserCreationMessages();
+        String firstName, lastName, email;
+
+        println(userCreationMessages.getASK_FOR_FIRST_NAME());
+        firstName = getInput();
+        println(userCreationMessages.getASK_FOR_LAST_NAME());
+        lastName = getInput();
+        println(userCreationMessages.getASK_FOR_EMAIL());
+        email = getInput();
+
+        return new Mentor(firstName, lastName, email);
     }
 }

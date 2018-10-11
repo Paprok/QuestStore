@@ -9,4 +9,5 @@ import java.util.List;
 public interface AdminView extends QSView {
     public void showMentorsAndTheirClassess(List<Mentor> mentors);
     public Account getAccountInformation();
+    public Mentor getMentorInformation();
 }

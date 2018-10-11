@@ -38,11 +38,12 @@ public class DAOMentorsSQL implements DAOMentors {
     @Override
     public void updateMentor(int id, Mentor updatedMentor) {
         try {
-            PreparedStatement ps = connection.prepareStatement("INSERT INTO mentors (email, name, surname) " +
-                    "VALUES (?, ?, ?)");
-            ps.setString(2, updatedMentor.getEmail());
-            ps.setString(3, updatedMentor.getFirstName());
-            ps.setString(4, updatedMentor.getLastName());
+            PreparedStatement ps = connection.prepareStatement(" UPDATE mentors SET name=?, surname=?, email=?" +
+                            "WHERE user_id =?");
+            ps.setString(1, updatedMentor.getEmail());
+            ps.setString(2, updatedMentor.getFirstName());
+            ps.setString(3, updatedMentor.getLastName());
+            ps.setInt(4, id);
             ps.executeUpdate();
             ps.close();
         } catch (SQLException e){
@@ -91,10 +92,14 @@ public class DAOMentorsSQL implements DAOMentors {
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()) {
+                int id = resultSet.getInt("user_id");
                 String name = resultSet.getString("name");
                 String surname = resultSet.getString("surname");
                 String email = resultSet.getString("email");
-                mentors.add(new Mentor(name, surname, email));
+                Mentor mentor =new Mentor(name, surname, email);
+                mentor.setId(id);
+                mentors.add(mentor);
+
             }
         }catch (SQLException e) {
             System.out.println("Couldn't find mentor with given id");

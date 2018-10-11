@@ -13,7 +13,6 @@ public class AppDAOsSQL implements AppDAOs {
 
     @Override
     public DAOMentors getDAOMentors() {
-        // TO DO
-        throw new NotImplementedException();
+        return new DAOMentorsSQL();
     }
 }

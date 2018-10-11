@@ -1,8 +1,13 @@
 package com.codecool.app;
 
+import com.codecool.app.messages.ErrorMessages;
 import com.codecool.app.login.Account;
 import com.codecool.app.login.LoginController;
-import com.codecool.app.usercontrollers.*;
+import com.codecool.app.user.controller.AdminController;
+import com.codecool.app.user.controller.CodecoolerController;
+import com.codecool.app.user.controller.MentorController;
+import com.codecool.app.user.controller.UserController;
+import com.codecool.app.view.AppViews;
 import com.codecool.app.view.QSView;
 import com.codecool.app.view.consoleimpl.LoginViewConsoleImpl;
 
@@ -10,11 +15,14 @@ import java.util.NoSuchElementException;
 
 public class QuestStore {
     private final String[] MENU_OPTIONS = {"Login", "Exit"};
-    private final String NO_ACCESS_ERROR = "Controller for user with given access level is not implemented";
+    private ErrorMessages errorMessages;
+    private AppViews appViews;
     private QSView view;
 
-    public QuestStore(QSView view){
-        this.view = view;
+    public QuestStore(AppViews appViews){
+        this.appViews = appViews;
+        view = appViews.getQSView();
+        errorMessages = new ErrorMessages();
     }
 
     public void run(){
@@ -31,6 +39,9 @@ public class QuestStore {
                     break;
                 case "2":
                     isRunning = false;
+                    break;
+                default:
+                    view.printError(errorMessages.getNO_OPTION_MESSAGE());
                     break;
             }
         }
@@ -58,13 +69,13 @@ public class QuestStore {
     private UserController getControllerForUser(Account loggedUser) throws IllegalAccessException{
         switch (loggedUser.getAccessLevel()){
             case ADMIN:
-                return new AdminController();
+                return new AdminController(appViews.getAdminView());
             case MENTOR:
                 return new MentorController();
             case CODECOOLER:
                 return new CodecoolerController();
         }
 
-        throw new IllegalAccessException(NO_ACCESS_ERROR);
+        throw new IllegalAccessException(errorMessages.getNO_ACCESS_MESSAGE());
     }
 }

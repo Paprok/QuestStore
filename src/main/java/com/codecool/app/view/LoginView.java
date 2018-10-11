@@ -5,5 +5,5 @@ import com.codecool.app.login.Account;
 import java.util.NoSuchElementException;
 
 public interface LoginView extends View{
-    public Account getAccount() throws NoSuchElementException;
+    public Account getAccountInformation() throws NoSuchElementException;
 }

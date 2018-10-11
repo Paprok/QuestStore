@@ -1,6 +1,6 @@
 ﻿-- Table: public.accounts
 
-DROP TABLE public.accounts;
+--DROP TABLE public.accounts;
 
 CREATE TABLE public.accounts
 (

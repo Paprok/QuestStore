@@ -1,5 +1,6 @@
 package com.codecool.app;
 
+import com.codecool.app.dao.AppDAOs;
 import com.codecool.app.messages.ErrorMessages;
 import com.codecool.app.login.Account;
 import com.codecool.app.login.LoginController;
@@ -18,9 +19,11 @@ public class QuestStore {
     private ErrorMessages errorMessages;
     private AppViews appViews;
     private QSView view;
+    private AppDAOs appDAOs;
 
-    public QuestStore(AppViews appViews){
+    public QuestStore(AppViews appViews, AppDAOs appDAOs){
         this.appViews = appViews;
+        this.appDAOs = appDAOs;
         view = appViews.getQSView();
         errorMessages = new ErrorMessages();
     }
@@ -48,7 +51,7 @@ public class QuestStore {
     }
 
     private void logInAndRunControllerForUser(){
-        LoginController loginController = new LoginController(new LoginViewConsoleImpl());
+        LoginController loginController = new LoginController(appViews.getLoginView(), appDAOs.getDAOAccounts());
 
         try{
             loginController.logIn();
@@ -69,7 +72,7 @@ public class QuestStore {
     private UserController getControllerForUser(Account loggedUser) throws IllegalAccessException{
         switch (loggedUser.getAccessLevel()){
             case ADMIN:
-                return new AdminController(appViews.getAdminView());
+                return new AdminController(appViews.getAdminView(), appDAOs);
             case MENTOR:
                 return new MentorController();
             case CODECOOLER:

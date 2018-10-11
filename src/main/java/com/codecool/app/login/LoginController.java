@@ -1,5 +1,6 @@
 package com.codecool.app.login;
 
+import com.codecool.app.dao.DAOAccounts;
 import com.codecool.app.messages.ErrorMessages;
 import com.codecool.app.messages.LoginMessages;
 import com.codecool.app.view.LoginView;
@@ -8,13 +9,13 @@ import java.util.NoSuchElementException;
 
 public class LoginController {
     private LoginView loginView;
-    private ErrorMessages errorMessages;
+    private DAOAccounts daoAccounts;
     private Account loggedAccount;
     private boolean isUserLogged;
 
-    public LoginController(LoginView loginView){
+    public LoginController(LoginView loginView, DAOAccounts daoAccounts){
         this.loginView = loginView;
-        errorMessages = new ErrorMessages();
+        this.daoAccounts = daoAccounts;
         isUserLogged = false;
     }
 
@@ -37,9 +38,6 @@ public class LoginController {
     }
 
     private Account getCorrespondingAccountFromDB(Account userTryingToLogIn){
-        // Get account from DB and return it if exists
-        // Set account id
-
-        throw new NoSuchElementException(errorMessages.getUSER_NOT_REGISTERED_MESSAGE());
+        return userTryingToLogIn = daoAccounts.getAccountByNicknameAndPassword(userTryingToLogIn.getNickname(), userTryingToLogIn.getPassword());
     }
 }

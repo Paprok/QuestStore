@@ -47,11 +47,9 @@ public class AdminViewConsoleImpl extends QSViewConsoleImpl implements AdminView
             println(adminMessages.getASK_FOR_ACCESS_LEVEL());
             println(String.format("%s: %s", adminMessages.getAVAILABLE_ACCESS_LEVELS_MESSAGE(), AccessLevel.getAccessLevelsString()));
             accessLevelString = getInput();
-            try{
-                accountInformation.setAccessLevel(AccessLevel.getAccessLevel(accessLevelString));
+            accountInformation.setAccessLevel(AccessLevel.getAccessLevel(accessLevelString));
+            if (accountInformation.getAccessLevel() != AccessLevel.NOBODY) {
                 isAccessLevelValid = true;
-            } catch (IllegalAccessException e){
-                printError(new ErrorMessages().getNO_ACCESS_MESSAGE());
             }
         }
     }

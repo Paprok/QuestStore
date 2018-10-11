@@ -1,13 +1,13 @@
 ﻿-- Table: public.accounts
 
--- DROP TABLE public.accounts;
+DROP TABLE public.accounts;
 
 CREATE TABLE public.accounts
 (
-  nick text NOT NULL,
+  user_id SERIAL PRIMARY KEY,
+  nick text NOT NULL UNIQUE,
   type text NOT NULL,
-  password text NOT NULL,
-  CONSTRAINT accounts_pkey PRIMARY KEY (nick)
+  password text NOT NULL
 )
 WITH (
   OIDS=FALSE

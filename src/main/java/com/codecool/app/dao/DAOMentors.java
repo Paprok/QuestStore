@@ -8,6 +8,6 @@ public interface DAOMentors {
     void insertMentor(Mentor newMentor);
     void updateMentor(int id, Mentor updatedMentor);
     Mentor getMentor(int id);
-    List<Mentor> getMentors();
+    List<Mentor> getAllMentors();
     void deleteMentor(int id);
 }

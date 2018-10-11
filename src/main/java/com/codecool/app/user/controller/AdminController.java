@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
 public class AdminController implements UserController{
     private final String[] ADMIN_OPTIONS = {
             "Create new account", "Show Mentors", "View Mentor's details",
-            "Edit Mentor", "Create class", "Create level of experience", "Exit"
+            "Edit Mentor", "Delete Mentor", "Create class", "Create level of experience", "Exit"
     };
     private ErrorMessages errorMessages;
     private UserCreationMessages userCreationMessages;
@@ -52,7 +52,7 @@ public class AdminController implements UserController{
                 handleCreatingAccount();
                 break;
             case "2":
-                view.showMentorsAndTheirClassess(appDAOs.getDAOMentors().getMentors());
+                view.showMentorsAndTheirClassess(appDAOs.getDAOMentors().getAllMentors());
                 break;
             case "3":
                 id = chooseId();
@@ -64,12 +64,15 @@ public class AdminController implements UserController{
                 appDAOs.getDAOMentors().updateMentor(id, mentor);
                 break;
             case "5":
-                // TO DO
+                id = chooseId();
+                appDAOs.getDAOMentors().deleteMentor(id);
                 break;
             case "6":
                 // TO DO
                 break;
             case "7":
+                break;
+            case "8":
                 isRunning = false;
                 break;
             default:
@@ -109,7 +112,7 @@ public class AdminController implements UserController{
             // Check if informations are valid
             areMentorInformationsValid = true;
         } while (! areMentorInformationsValid);
-
+        mentor.setId(user_id);
         return mentor;
     }
 }

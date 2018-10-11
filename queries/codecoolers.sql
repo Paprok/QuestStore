@@ -7,7 +7,6 @@ CREATE TABLE public.codecoolers
   user_id integer UNIQUE NOT NULL,
   nick text NOT NULL,
   balance integer,
-  level integer,
   earned integer,
   class_id integer,
   CONSTRAINT codecoolers_user_id_fkey FOREIGN KEY (user_id)

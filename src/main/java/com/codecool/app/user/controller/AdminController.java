@@ -10,7 +10,7 @@ public class AdminController implements UserController{
     private final String[] ADMIN_OPTIONS = {"Create new account", "Exit"};
     private ErrorMessages errorMessages;
     private AdminView view;
-    boolean isRunning;
+    private boolean isRunning;
 
     public AdminController(AdminView view) {
         this.view = view;

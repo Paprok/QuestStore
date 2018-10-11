@@ -48,8 +48,8 @@ public class Mentor {
         this.email = email;
     }
 
-    public List<Class> getClassess(){
-
-        throw new NotImplementedException();
+    @Override
+    public String toString() {
+        return String.format("%d.  %s %s  |  e-mail: %s", id, firstName, lastName, email);
     }
 }

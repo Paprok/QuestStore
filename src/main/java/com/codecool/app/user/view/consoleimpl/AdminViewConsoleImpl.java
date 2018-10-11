@@ -14,11 +14,15 @@ import java.util.List;
 
 public class AdminViewConsoleImpl extends QSViewConsoleImpl implements AdminView {
     @Override
+    public void showMentor(Mentor mentor) {
+        println(mentor.toString());
+    }
+
+    @Override
     public void showMentorsAndTheirClassess(List<Mentor> mentors) {
         for (Mentor mentor : mentors) {
-            println(String.format("(%d) %s %s  |  e-mail: %s  | classess: %s",
-                    mentor.getId(), mentor.getFirstName(), mentor.getLastName(), mentor.getEmail(), mentor.getClassess().toString()
-            ));
+            println(mentor.toString());
+            println("Classess: WEB :)");
         }
     }
 

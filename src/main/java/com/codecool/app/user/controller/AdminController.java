@@ -52,6 +52,7 @@ public class AdminController implements UserController{
     private void handleCreatingAccount(){
         Account account = view.getAccountInformation();
         // Save account to DB
+        
         switch (account.getAccessLevel()){
             case MENTOR:
                 handleCreatingMentor();

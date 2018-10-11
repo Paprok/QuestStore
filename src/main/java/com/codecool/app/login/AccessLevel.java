@@ -28,4 +28,9 @@ public enum  AccessLevel {
 
         return NOBODY;
     }
+
+    @Override
+    public String toString() {
+        return name().toUpperCase();
+    }
 }

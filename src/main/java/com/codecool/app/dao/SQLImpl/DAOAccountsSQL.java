@@ -4,6 +4,7 @@ import com.codecool.app.connectors.SQLConnector;
 import com.codecool.app.dao.DAOAccounts;
 import com.codecool.app.login.AccessLevel;
 import com.codecool.app.login.Account;
+import com.codecool.app.messages.ErrorMessages;
 
 import java.sql.*;
 import java.util.NoSuchElementException;
@@ -30,22 +31,20 @@ public class DAOAccountsSQL implements DAOAccounts {
             ps.close();
         } catch (SQLException e){
             e.printStackTrace();
-            throw new RuntimeException();
         }
 
-        throw new NoSuchElementException();
+        throw new NoSuchElementException(new ErrorMessages().getUSER_NOT_REGISTERED_MESSAGE());
     }
 
     @Override
     public void insertAccount(Account account) {
-        String sql = "INSERT INTO accounts (user_id, nick, type, password) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO accounts (nick, type, password) VALUES (?, ?, ?)";
         try{
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, account.getId());
-            ps.setString(2, account.getNickname());
-            ps.setString(3, account.getAccessLevel().toString());
-            ps.setString(4, account.getPassword());
-            ps.executeQuery();
+            ps.setString(1, account.getNickname());
+            ps.setString(2, account.getAccessLevel().toString());
+            ps.setString(3, account.getPassword());
+            ps.execute();
             ps.close();
         } catch (SQLException e){
             e.printStackTrace();
@@ -54,15 +53,14 @@ public class DAOAccountsSQL implements DAOAccounts {
 
     @Override
     public void updateAccount(int id, Account newAccount) {
-        String sql = "UPDATE accounts SET user_id=?, nick=?, type=?, password=? WHERE user_id=?";
+        String sql = "UPDATE accounts SET nick=?, type=?, password=? WHERE user_id=?";
         try{
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, newAccount.getId());
-            ps.setString(2, newAccount.getNickname());
-            ps.setString(3, newAccount.getAccessLevel().toString());
-            ps.setString(4, newAccount.getPassword());
-            ps.setInt(5, id);
-            ps.executeQuery();
+            ps.setString(1, newAccount.getNickname());
+            ps.setString(2, newAccount.getAccessLevel().toString());
+            ps.setString(3, newAccount.getPassword());
+            ps.setInt(4, id);
+            ps.execute();
             ps.close();
         } catch (SQLException e){
             e.printStackTrace();
@@ -73,7 +71,7 @@ public class DAOAccountsSQL implements DAOAccounts {
     public void deleteAccount(int id) {
         try{
             Statement stmt = connection.createStatement();
-            stmt.executeQuery("DELETE FROM accounts WHERE id=" + id);
+            stmt.execute("DELETE FROM accounts WHERE id=" + id);
         } catch (SQLException e){
             e.printStackTrace();
         }

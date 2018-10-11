@@ -52,10 +52,12 @@ public class AdminController implements UserController{
     private void handleCreatingAccount(){
         Account account = view.getAccountInformation();
         // Save account to DB
+        int user_id = -1;
+        // Exctract user_id of account from DB
         
         switch (account.getAccessLevel()){
             case MENTOR:
-                handleCreatingMentor();
+                handleCreatingMentor(user_id);
                 break;
             case CODECOOLER:
                 // TO DO
@@ -63,7 +65,7 @@ public class AdminController implements UserController{
         }
     }
 
-    private void handleCreatingMentor(){
+    private void handleCreatingMentor(int user_id){
         boolean areMentorInformationsValid = false;
 
         while (! areMentorInformationsValid){

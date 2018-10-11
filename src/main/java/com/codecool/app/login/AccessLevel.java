@@ -19,13 +19,13 @@ public enum  AccessLevel {
         return stringBuilder.toString();
     }
 
-    public static AccessLevel getAccessLevel(String accessLevelString) throws IllegalAccessException{
+    public static AccessLevel getAccessLevel(String accessLevelString){
         for (AccessLevel value : values()){
             if (value.name().toLowerCase().equals(accessLevelString.toLowerCase())){
                 return value;
             }
         }
 
-        throw new IllegalAccessException(new ErrorMessages().getNO_ACCESS_MESSAGE());
+        return NOBODY;
     }
 }

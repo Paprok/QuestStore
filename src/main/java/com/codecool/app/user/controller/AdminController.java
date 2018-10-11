@@ -68,6 +68,7 @@ public class AdminController implements UserController{
                 appDAOs.getDAOMentors().deleteMentor(id);
                 break;
             case "6":
+                // TO DO
                 break;
             case "7":
                 break;
@@ -78,8 +79,6 @@ public class AdminController implements UserController{
                 view.printError(errorMessages.getNO_OPTION_MESSAGE());
                 break;
         }
-
-
     }
 
     private int chooseId(){

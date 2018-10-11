@@ -1,7 +1,7 @@
-package com.codecool.app.common;
+package com.codecool.app.messages;
 
 public class ErrorMessages {
-    private final String NO_ACCESS_MESSAGE = "Controller for user with given access level is not implemented";
+    private final String NO_ACCESS_MESSAGE = "Given access level is not valid";
     private final String NO_OPTION_MESSAGE = "Option not found";
     private final String EMPTY_INPUT_MESSAGE = "Please enter something";
 

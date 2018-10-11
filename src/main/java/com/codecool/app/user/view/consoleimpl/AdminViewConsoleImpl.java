@@ -1,5 +1,10 @@
 package com.codecool.app.user.view.consoleimpl;
 
+import com.codecool.app.login.AccessLevel;
+import com.codecool.app.login.Account;
+import com.codecool.app.messages.AdminMessages;
+import com.codecool.app.messages.ErrorMessages;
+import com.codecool.app.messages.LoginMessages;
 import com.codecool.app.user.model.Mentor;
 import com.codecool.app.user.view.AdminView;
 import com.codecool.app.view.consoleimpl.QSViewConsoleImpl;
@@ -13,6 +18,40 @@ public class AdminViewConsoleImpl extends QSViewConsoleImpl implements AdminView
             println(String.format("(%d) %s %s  |  e-mail: %s  | classess: %s",
                     mentor.getId(), mentor.getFirstName(), mentor.getLastName(), mentor.getEmail(), mentor.getClassess().toString()
             ));
+        }
+    }
+
+    @Override
+    public Account getAccountInformation() {
+        String nickname, password;
+        Account accountInformation;
+        LoginMessages loginMessages = new LoginMessages();
+
+        println(loginMessages.getASK_FOR_NICKNAME());
+        nickname = getInput();
+        println(loginMessages.getASK_FOR_PASSWORD());
+        password = getInput();
+        accountInformation = new Account(nickname, password);
+        setAccountAccessLevel(accountInformation);
+
+        return accountInformation;
+    }
+
+    private void setAccountAccessLevel(Account accountInformation){
+        AdminMessages adminMessages = new AdminMessages();
+        String accessLevelString;
+        boolean isAccessLevelValid = false;
+
+        while (! isAccessLevelValid){
+            println(adminMessages.getASK_FOR_ACCESS_LEVEL());
+            println(String.format("%s: %s", adminMessages.getAVAILABLE_ACCESS_LEVELS_MESSAGE(), AccessLevel.getAccessLevelsString()));
+            accessLevelString = getInput();
+            try{
+                accountInformation.setAccessLevel(AccessLevel.getAccessLevel(accessLevelString));
+                isAccessLevelValid = true;
+            } catch (IllegalAccessException e){
+                printError(new ErrorMessages().getNO_ACCESS_MESSAGE());
+            }
         }
     }
 }

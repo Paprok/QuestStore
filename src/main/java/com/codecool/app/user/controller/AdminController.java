@@ -1,6 +1,7 @@
 package com.codecool.app.user.controller;
 
-import com.codecool.app.common.ErrorMessages;
+import com.codecool.app.login.Account;
+import com.codecool.app.messages.ErrorMessages;
 import com.codecool.app.user.view.AdminView;
 
 import java.util.NoSuchElementException;
@@ -48,6 +49,8 @@ public class AdminController implements UserController{
     }
 
     private void handleCreatingAccount(){
+        Account account = view.getAccountInformation();
+        // save account to DB
 
     }
 }

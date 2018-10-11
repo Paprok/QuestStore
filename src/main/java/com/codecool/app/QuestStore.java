@@ -1,6 +1,6 @@
 package com.codecool.app;
 
-import com.codecool.app.common.ErrorMessages;
+import com.codecool.app.messages.ErrorMessages;
 import com.codecool.app.login.Account;
 import com.codecool.app.login.LoginController;
 import com.codecool.app.user.controller.AdminController;

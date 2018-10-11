@@ -3080,6 +3080,24 @@
 					]
 				}
 			]
+		},
+		{
+			"_type": "UMLModel",
+			"_id": "AAAAAAFmYvfEuwmPQtY=",
+			"_parent": {
+				"$ref": "AAAAAAFF+h6SjaM2Hec="
+			},
+			"name": "Model1",
+			"ownedElements": [
+				{
+					"_type": "UMLClassDiagram",
+					"_id": "AAAAAAFmYvfEvAmQ/QQ=",
+					"_parent": {
+						"$ref": "AAAAAAFmYvfEuwmPQtY="
+					},
+					"name": "ClassDiagram1"
+				}
+			]
 		}
 	]
 }

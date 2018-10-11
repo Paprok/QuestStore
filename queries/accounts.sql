@@ -1,16 +1,16 @@
-﻿-- Table: queststore.accounts
+﻿-- Table: public.accounts
 
--- DROP TABLE queststore.accounts;
+--DROP TABLE public.accounts;
 
-CREATE TABLE queststore.accounts
+CREATE TABLE public.accounts
 (
-  nick text NOT NULL,
+  user_id SERIAL PRIMARY KEY,
+  nick text NOT NULL UNIQUE,
   type text NOT NULL,
-  password text NOT NULL,
-  CONSTRAINT accounts_pkey PRIMARY KEY (nick)
+  password text NOT NULL
 )
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE queststore.accounts
+ALTER TABLE public.accounts
   OWNER TO queststore;

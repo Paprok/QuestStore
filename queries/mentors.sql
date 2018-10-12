@@ -10,7 +10,8 @@ CREATE TABLE public.mentors
   email text,
   CONSTRAINT user_id_fkey FOREIGN KEY (user_id)
       REFERENCES public.accounts (user_id) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE NO ACTION
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT mentor_id PRIMARY KEY (user_id)    
 )
 WITH (
   OIDS=FALSE

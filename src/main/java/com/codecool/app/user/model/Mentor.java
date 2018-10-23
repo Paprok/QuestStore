@@ -10,6 +10,8 @@ public class Mentor {
     private String lastName;
     private String email;
 
+    public Mentor(){ };
+
     public Mentor(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;

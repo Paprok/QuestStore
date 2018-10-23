@@ -1,4 +1,5 @@
--- DELETE FROM codecoolers;
+﻿--DELETE FROM codecoolers;
 
-INSERT INTO codecoolers (user_id, nick, balance, level, earned)
-VALUES (4, 'karol', 0, 0, 0);
+INSERT INTO codecoolers (user_id, nick, balance, earned, class_id)
+VALUES (2, 'karol', 0, 0, 1),
+	(5, 'krzych', 0, 0, 1);

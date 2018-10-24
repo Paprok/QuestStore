@@ -14,7 +14,7 @@ body{
 }
 
 wrapper{
-    height: 100vh;
+    height: auto;
     padding: 0 15px;
     min-height: 100%;
     max-width: 1024px;
@@ -85,6 +85,7 @@ nav ul{
     border-radius: 10px;
     background-color: blue;
     overflow: hidden;
+    color: white;
 }
 
 nav ul li{
@@ -97,8 +98,8 @@ nav a{
     line-height: 35px;
     background-color: #4A9ACB;
     text-decoration: none;
-    color: black;
     text-align: center;
+    color: white;
 }
 
 nav a:hover{
@@ -116,7 +117,6 @@ content{
     border-radius: 15px;
     background-color: #eee;
     flex: 1 0 auto;
-    display: flex;
 }
 
 content iframe{
@@ -133,4 +133,8 @@ footer{
     border-radius: 15px;
     flex-shrink: 0;
     text-align: center;
+}
+
+.horizontal{
+    display: flex;
 }

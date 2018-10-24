@@ -14,9 +14,11 @@
                 <div class="logged-user">
                     <div class="user-info">
                         <p>Agata Niewiadomska</p>
-                        <p>"CSS Destroyer"</p>
+                        <div class="horizontal">
+                            "<p>CSS Destroyer</p>"
+                        </div>
                         <p></p>
-                        <a href="#">Log out</a>
+                        <a href="index.html">Log out</a>
                     </div>
                     <img class="user-avatar" src="img/43594-O3RK5Y%20%5Bwww.imagesplitter.net%5D-0-0.jpeg">
                 </div>
@@ -31,11 +33,13 @@
                 </ul>
             </nav>
             <content>
-                <iframe src="profile.html" name="content-iframe"></iframe>
+                <iframe id="content-iframe" src="profile.html" name="content-iframe" scrolling="no" onload="resizeIframe()"></iframe>
             </content>
             <footer>
                 <p>2018 Made by Radian&Ferned</p>
             </footer>
+            
+            <script src="js/home.js"></script>
         </wrapper>   
     </body>
 </html>

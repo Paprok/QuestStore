@@ -1,0 +1,42 @@
+profile{
+    display: flex;
+    flex-direction: column;
+}
+
+#nickname{
+    display: flex;
+}
+
+#nickname-input{
+    display: none
+}
+
+.logged-user{
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-info{
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.user-info p{
+    margin: 0;
+    display: block;
+}
+
+.name{
+    font-size: 25px;
+}
+
+.title{
+    font-size: 20px;
+}
+
+.user-avatar{
+    width: 180px;
+    height: 230px;
+}

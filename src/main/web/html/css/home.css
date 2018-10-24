@@ -27,7 +27,6 @@ header{
     margin: 15px 0;
     padding: 0 15px;
     min-height: 10vh;
-    line-height: 10vh;
     border-radius: 10px;
     display: flex;
     justify-content: flex-start;
@@ -35,11 +34,15 @@ header{
     background-color: #eee;
 }
 
+#cc-logo-header{
+    margin-right: 10px;
+}
+
 header h1{
     margin-left: auto;
 }
 
-header #logged-user{
+header .logged-user{
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -47,18 +50,17 @@ header #logged-user{
     margin-left: auto;
 }
 
-#user-info{
+.user-info{
     margin-top: 10px;
     display: flex;
     flex-direction: column;
-    line-height: 22px;
 }
 
-#user-info p{
-    display: block;
+.user-info p{
+    margin-bottom: 5px;
 }
 
-#user-info a{
+.user-info a{
     margin: auto 0 10px 0;
     align-self: flex-end;
 }
@@ -67,10 +69,10 @@ header #logged-user{
     height: 80px;
 }
 
-#user-avatar{
+.user-avatar{
     width: 80px;
     height: 100px;
-    padding: 10px;
+    padding: 10px 0 10px 10px;
 }
 
 nav {
@@ -114,6 +116,12 @@ content{
     border-radius: 15px;
     background-color: #eee;
     flex: 1 0 auto;
+    display: flex;
+}
+
+content iframe{
+    width: 100%;
+    border: none;
 }
 
 footer{

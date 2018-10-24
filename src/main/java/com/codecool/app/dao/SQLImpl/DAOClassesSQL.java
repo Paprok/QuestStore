@@ -108,7 +108,7 @@ public class DAOClassesSQL implements DAOClasses {
             ps.setInt(1,class_id );
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()){
-                Mentor mentor = DAOMentorsSQL.extractMentorFromResultSet(resultSet);
+                Mentor mentor = new DAOMentorsSQL().extractMentorFromResultSet(resultSet);
                 mentors.add(mentor);
             }
         } catch (SQLException e){
@@ -128,7 +128,7 @@ public class DAOClassesSQL implements DAOClasses {
             ps.setInt(1, class_id);
             ResultSet resultSet = ps.executeQuery();
             while(resultSet.next()){
-                Codecooler codecooler = DAOCodecoolersSQL.extractCodecoolerFromResultSet(resultSet);
+                Codecooler codecooler = new DAOCodecoolersSQL().extractCodecoolerFromResultSet(resultSet);
                 codecoolers.add(codecooler);
             }
         } catch (SQLException e){

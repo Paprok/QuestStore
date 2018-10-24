@@ -100,7 +100,7 @@ public class DAOMentorsSQL implements DAOMentors {
         return mentors;
     }
 
-    static Mentor extractMentorFromResultSet(ResultSet resultSet) throws SQLException{
+    Mentor extractMentorFromResultSet(ResultSet resultSet) throws SQLException{
         int id = resultSet.getInt("user_id");
         String name = resultSet.getString("name");
         String surname = resultSet.getString("surname");

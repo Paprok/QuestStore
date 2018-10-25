@@ -62,7 +62,7 @@ table {
   flex-wrap: wrap;
   justify-content:flex-end;
   align-content: flex-start;
-  width: 160px;
+  width: 150px;
   height: 210px;
   border: 1px solid black;
   border-radius: 10px;
@@ -84,7 +84,7 @@ table {
 }
 
 .card img{
-  height: 160px;
+  height: 150px;
 }
 
 .card button{

@@ -11,10 +11,11 @@ body{
     min-height: 100vh;
     display: flex;
     justify-content: center;
+    background-color: #afceff;
 }
 
 wrapper{
-    height: 100vh;
+    height: auto;
     padding: 0 15px;
     min-height: 100%;
     max-width: 1024px;
@@ -79,12 +80,21 @@ nav {
     margin: 15px 0;
 }
 
+.nav{
+    display: none;
+}
+
+#codecooler-nav{
+    display: initial;
+}
+
 nav ul{
     display: flex;
     list-style: none;
     border-radius: 10px;
     background-color: blue;
     overflow: hidden;
+    color: white;
 }
 
 nav ul li{
@@ -97,8 +107,9 @@ nav a{
     line-height: 35px;
     background-color: #4A9ACB;
     text-decoration: none;
-    color: black;
     text-align: center;
+    color: white;
+    border: 1px solid #afceff;
 }
 
 nav a:hover{
@@ -116,7 +127,6 @@ content{
     border-radius: 15px;
     background-color: #eee;
     flex: 1 0 auto;
-    display: flex;
 }
 
 content iframe{
@@ -133,4 +143,9 @@ footer{
     border-radius: 15px;
     flex-shrink: 0;
     text-align: center;
+    color: white;
+}
+
+.horizontal{
+    display: flex;
 }

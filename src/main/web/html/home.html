@@ -14,28 +14,50 @@
                 <div class="logged-user">
                     <div class="user-info">
                         <p>Agata Niewiadomska</p>
-                        <p>"CSS Destroyer"</p>
-                        <p></p>
-                        <a href="#">Log out</a>
+                        <div class="horizontal">
+                            "<p>CSS Destroyer</p>"
+                        </div>
+                        <button onclick="becomeAdmin()">I'm an admin!</button>
+                        <button onclick="becomeMentor()">I'm a mentor!</button>
+                        <button onclick="becomeCodecooler()">I'm a codecooler!</button>
                     </div>
                     <img class="user-avatar" src="img/43594-O3RK5Y%20%5Bwww.imagesplitter.net%5D-0-0.jpeg">
                 </div>
             </header>
-            <nav>
+            <nav id="codecooler-nav" class="nav">
                 <ul>
-                    <li><a href="profile.html"  target="content-iframe"class="active">Home</a></li>
-                    <li><a href="index.html" target="content-iframe">Option 1</a></li>
-                    <li><a href="#">Option 2</a></li>
-                    <li><a href="#">Option 3</a></li>
-                    <li><a href="#">Option last</a></li>
+                    <li><a href="profile.html"  target="content-iframe"class="active">Profile</a></li>
+                    <li><a href="#">My Wallet</a></li>
+                    <li><a href="#">Shop</a></li>
+                    <li><a href="index.html">Log Out</a></li>
+                </ul>
+            </nav>
+            <nav id="mentor-nav" class="nav">
+                <ul>
+                    <li><a href="profile.html"  target="content-iframe" class="active">Profile</a></li>
+                    <li><a href="#">Students</a></li>
+                    <li><a href="#">Edit Store</a></li>
+                    <li><a href="#">Edit Quests</a></li>
+                    <li><a href="index.html">Log Out</a></li>
+                </ul>
+            </nav>
+            <nav id="admin-nav" class="nav">
+                <ul>
+                    <li><a href="profile.html"  target="content-iframe"class="active">Profile</a></li>
+                    <li><a href="users-list.html" target="content-iframe">Mentors</a></li>
+                    <li><a href="#">Classess</a></li>
+                    <li><a href="#">Edit Levels</a></li>
+                    <li><a href="index.html">Log Out</a></li>
                 </ul>
             </nav>
             <content>
-                <iframe src="profile.html" name="content-iframe"></iframe>
+                <iframe id="content-iframe" src="profile.html" name="content-iframe" scrolling="no" onload="resizeIframe()"></iframe>
             </content>
             <footer>
                 <p>2018 Made by Radian&Ferned</p>
             </footer>
+            
+            <script src="js/home.js"></script>
         </wrapper>   
     </body>
 </html>

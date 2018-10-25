@@ -17,12 +17,12 @@ body{
     height: inherit;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    background-color: #afceff;
 }
 
 #login-panel{
-    padding: 80px 100px;
-    background-color: #ddd;
+    margin-top: 60px;
     border-radius: 25px;
     display: flex;
     flex-direction: column;
@@ -30,12 +30,15 @@ body{
     text-align: center;
 }
 
+#title img{
+    width: 100px;
+    margin-bottom: 10px;
+}
+
 #QS{
     font-size: 55px;
-    margin-bottom: 85px;
-    background: -webkit-linear-gradient(#f22000, #0072ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    margin-bottom: 45px;
+    -webkit-text-fill-color: black;
 }
 
 form{
@@ -55,13 +58,12 @@ input[type="submit"]{
     width: 120px;
     height: 30px;
     border: none;
-    background-color: darkgreen;
+    background-color: #4A9ACB;
     color: white;
     font-size: 15px;
 }
 
 input[type="submit"]:hover{
-    background-color: lawngreen;
-    color: black;
+    background-color: #D94140;
     cursor: pointer;
 }

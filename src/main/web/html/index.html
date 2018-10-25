@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" onload="parent.resizeIframe()">
     <head>
         <title>Quest Store</title>
         <meta charset="utf-8">
@@ -10,17 +10,19 @@
         <div id="wrapper">
             <div id="login-panel">
                 <div id="title">
+                    <img src="img/codecool-logo.png">
                     <h1>Welcome to</h1>
                     <h1 id="QS">Quest Store</h1>
                 </div>
-                <form>
+                <form action="home.html">
                     Nickname:<br>
                     <input type="text"><br>
                     Password:<br>
                     <input type="password"><br>
                     <input type="submit" value="Login">
                 </form>
-            </div> 
-        </div>   
+            </div>
+        </div>
+    <script src="js/login.js"></script>
     </body>
 </html>

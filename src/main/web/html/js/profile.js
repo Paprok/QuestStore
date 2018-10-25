@@ -31,11 +31,11 @@ function togglePasswordInputs(){
     } else {
         document.getElementById("change-password").style.display = "flex";
         
-        parent.resizeIframe();
 
         location.href = "#change-password";
     }
     
+    parent.resizeIframe();
     isPasswordBeingChanged = !isPasswordBeingChanged;
 }
 

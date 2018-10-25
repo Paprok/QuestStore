@@ -11,6 +11,7 @@ body{
     min-height: 100vh;
     display: flex;
     justify-content: center;
+    background-color: #afceff;
 }
 
 wrapper{
@@ -79,6 +80,14 @@ nav {
     margin: 15px 0;
 }
 
+.nav{
+    display: none;
+}
+
+#codecooler-nav{
+    display: initial;
+}
+
 nav ul{
     display: flex;
     list-style: none;
@@ -100,6 +109,7 @@ nav a{
     text-decoration: none;
     text-align: center;
     color: white;
+    border: 1px solid #afceff;
 }
 
 nav a:hover{
@@ -133,6 +143,7 @@ footer{
     border-radius: 15px;
     flex-shrink: 0;
     text-align: center;
+    color: white;
 }
 
 .horizontal{

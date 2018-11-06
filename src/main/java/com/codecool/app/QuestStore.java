@@ -1,6 +1,8 @@
 package com.codecool.app;
 
 import com.codecool.app.dao.AppDAOs;
+import com.codecool.app.httphandlers.LoginHandler;
+import com.codecool.app.httphandlers.StaticHandler;
 import com.codecool.app.messages.ErrorMessages;
 import com.codecool.app.login.Account;
 import com.codecool.app.login.LoginController;
@@ -11,7 +13,10 @@ import com.codecool.app.user.controller.UserController;
 import com.codecool.app.view.AppViews;
 import com.codecool.app.view.QSView;
 import com.codecool.app.view.consoleimpl.LoginViewConsoleImpl;
+import com.sun.net.httpserver.HttpServer;
 
+import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.util.NoSuchElementException;
 
 public class QuestStore {
@@ -28,27 +33,37 @@ public class QuestStore {
         errorMessages = new ErrorMessages();
     }
 
-    public void run(){
-        boolean isRunning = true;
-        String choice;
+    public void run() throws IOException {
+        HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
 
-        while (isRunning){
-            view.printMenu(MENU_OPTIONS);
+        server.createContext("/", new LoginHandler());
+        server.createContext("/static", new StaticHandler());
+        server.setExecutor(null);
 
-            choice = view.getInput();
-            switch (choice){
-                case "1":
-                    logInAndRunControllerForUser();
-                    break;
-                case "2":
-                    isRunning = false;
-                    break;
-                default:
-                    view.printError(errorMessages.getNO_OPTION_MESSAGE());
-                    break;
-            }
-        }
+        server.start();
     }
+
+//    public void run(){
+//        boolean isRunning = true;
+//        String choice;
+//
+//        while (isRunning){
+//            view.printMenu(MENU_OPTIONS);
+//
+//            choice = view.getInput();
+//            switch (choice){
+//                case "1":
+//                    logInAndRunControllerForUser();
+//                    break;
+//                case "2":
+//                    isRunning = false;
+//                    break;
+//                default:
+//                    view.printError(errorMessages.getNO_OPTION_MESSAGE());
+//                    break;
+//            }
+//        }
+//    }
 
     private void logInAndRunControllerForUser(){
         LoginController loginController = new LoginController(appViews.getLoginView(), appDAOs.getDAOAccounts());

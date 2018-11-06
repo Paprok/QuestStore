@@ -4,13 +4,12 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Scanner;
 
 public class LoginHandler implements HttpHandler {
-    private final String LOGIN_PAGE_URL = "static/index.html";
+    private final String LOGIN_PAGE_URL = "static/login.html";
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {

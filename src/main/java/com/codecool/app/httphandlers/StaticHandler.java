@@ -70,7 +70,6 @@ public class StaticHandler implements HttpHandler {
         while ((bytesRead = fileInputStream.read(buffer)) >= 0){
             os.write(buffer, 0, bytesRead);
         }
-        System.out.println("send");
         os.close();
     }
 }

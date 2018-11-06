@@ -5,6 +5,9 @@ public class Account {
     private String nickname;
     private String password;
     private AccessLevel accessLevel;
+    private String sessionID;
+
+    public Account(){}
 
     public Account(String nickname, String password){
         this.nickname = nickname;
@@ -42,5 +45,13 @@ public class Account {
 
     public AccessLevel getAccessLevel(){
         return accessLevel;
+    }
+
+    public String getSessionID() {
+        return sessionID;
+    }
+
+    public void setSessionID(String sessionID) {
+        this.sessionID = sessionID;
     }
 }

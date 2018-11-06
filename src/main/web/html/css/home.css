@@ -70,7 +70,7 @@ header .logged-user{
     height: 80px;
 }
 
-.user-avatar{
+header .user-avatar{
     width: 80px;
     height: 100px;
     padding: 10px 0 10px 10px;
@@ -127,11 +127,6 @@ content{
     border-radius: 15px;
     background-color: #eee;
     flex: 1 0 auto;
-}
-
-content iframe{
-    width: 100%;
-    border: none;
 }
 
 footer{

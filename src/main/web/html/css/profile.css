@@ -21,7 +21,6 @@ profile{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    
 }
 
 .user-info p{

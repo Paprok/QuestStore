@@ -1,6 +1,7 @@
 package com.codecool.app;
 
 import com.codecool.app.dao.AppDAOs;
+import com.codecool.app.httphandlers.AdminHandler;
 import com.codecool.app.httphandlers.LoginHandler;
 import com.codecool.app.httphandlers.StaticHandler;
 import com.codecool.app.messages.ErrorMessages;
@@ -38,6 +39,7 @@ public class QuestStore {
 
         server.createContext("/", new LoginHandler());
         server.createContext("/static", new StaticHandler());
+        server.createContext("/admin", new AdminHandler());
         server.setExecutor(null);
 
         server.start();

@@ -22,7 +22,7 @@ public class SQLConnector {
             try {
                 createConnection();
             } catch (SQLException e) {
-                System.out.println("Couldn't createConnection to database");
+                System.out.println("Couldn't create connection to database");
             }
         } return connection;
     }

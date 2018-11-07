@@ -37,7 +37,8 @@ public class QuestStore {
     public void run() throws IOException {
         HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
 
-        server.createContext("/", new LoginHandler());
+
+        server.createContext("/", new LoginHandler(appDAOs.getDAOAccounts()));
         server.createContext("/static", new StaticHandler());
         server.createContext("/admin", new AdminHandler());
         server.setExecutor(null);

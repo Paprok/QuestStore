@@ -53,13 +53,14 @@ public class DAOAccountsSQL implements DAOAccounts {
 
     @Override
     public void updateAccount(int id, Account newAccount) {
-        String sql = "UPDATE accounts SET nick=?, type=?, password=? WHERE user_id=?";
+        String sql = "UPDATE accounts SET nick=?, type=?, password=?, session_id=? WHERE user_id=?";
         try{
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, newAccount.getNickname());
             ps.setString(2, newAccount.getAccessLevel().toString());
             ps.setString(3, newAccount.getPassword());
-            ps.setInt(4, id);
+            ps.setString(4, newAccount.getSessionID());
+            ps.setInt(5, id);
             ps.execute();
             ps.close();
         } catch (SQLException e){
@@ -81,7 +82,7 @@ public class DAOAccountsSQL implements DAOAccounts {
         Account account = new Account(resultSet.getString("nick"), resultSet.getString("password"));
         account.setAccessLevel(AccessLevel.getAccessLevel(resultSet.getString("type")));
         account.setId(resultSet.getInt("user_id"));
-
+        account.setSessionID(resultSet.getString("session_id"));
         return account;
     }
 }

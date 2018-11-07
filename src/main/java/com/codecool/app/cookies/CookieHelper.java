@@ -1,4 +1,4 @@
-package com.codecool.app.login.cookies;
+package com.codecool.app.cookies;
 
 import com.sun.net.httpserver.HttpExchange;
 
@@ -12,6 +12,10 @@ public class CookieHelper {
 
     public CookieHelper(String SESSION_COOKIE_NAME) {
         this.SESSION_COOKIE_NAME = SESSION_COOKIE_NAME;
+    }
+
+    public String getSESSION_COOKIE_NAME() {
+        return SESSION_COOKIE_NAME;
     }
 
     public Optional<HttpCookie> getSessionIdCookie(HttpExchange httpExchange){
@@ -41,4 +45,6 @@ public class CookieHelper {
         }
         return Optional.empty();
     }
+
+
 }

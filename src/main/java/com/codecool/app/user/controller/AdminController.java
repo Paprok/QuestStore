@@ -98,7 +98,7 @@ public class AdminController implements UserController{
                 appDAOs.getDAOMentors().insertMentor(newMentor);
                 break;
             case CODECOOLER:
-                // TO DO
+                // TODO
                 break;
         }
     }

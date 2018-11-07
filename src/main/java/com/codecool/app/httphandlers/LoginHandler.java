@@ -2,7 +2,7 @@ package com.codecool.app.httphandlers;
 
 import com.codecool.app.dao.DAOAccounts;
 import com.codecool.app.login.Account;
-import com.codecool.app.login.cookies.CookieHelper;
+import com.codecool.app.cookies.CookieHelper;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
@@ -13,12 +13,13 @@ import java.util.*;
 
 public class LoginHandler implements HttpHandler {
     private final String LOGIN_PAGE_URL = "static/login.html";
-    private final String SESSION_COOKIE_NAME = "sessionId";
-    private CookieHelper cookieHelper = new CookieHelper(SESSION_COOKIE_NAME);
+    private CookieHelper cookieHelper;
     private DAOAccounts daoAccounts;
 
-    public LoginHandler(DAOAccounts daoAccounts) {
+    public LoginHandler(DAOAccounts daoAccounts, CookieHelper cookieHelper) {
         this.daoAccounts = daoAccounts;
+        this.cookieHelper = cookieHelper;
+        this.cookieHelper = cookieHelper;
     }
 
     @Override
@@ -30,7 +31,6 @@ public class LoginHandler implements HttpHandler {
         }
 
         else if (method.equals("POST")){
-            System.out.println("is post");
             handleRequestPOST(httpExchange);
         }
     }
@@ -56,7 +56,7 @@ public class LoginHandler implements HttpHandler {
     }
 
     private  void handleRequestPOST(HttpExchange httpExchange) throws IOException{
-        Optional<HttpCookie> cookie = cookieHelper.getSessionIdCookie(httpExchange);
+
         InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody(), "utf-8");
         BufferedReader br = new BufferedReader(isr);
         String formData = br.readLine();
@@ -68,9 +68,11 @@ public class LoginHandler implements HttpHandler {
         try {
             Account account = daoAccounts.getAccountByNicknameAndPassword(nick, password);
             String sessionId = UUID.randomUUID().toString();
-            cookie = Optional.of(new HttpCookie(SESSION_COOKIE_NAME, sessionId));
+            account.setSessionID(sessionId);
+            daoAccounts.updateAccount(account.getId(), account);
+            Optional<HttpCookie> cookie = Optional.of(new HttpCookie(cookieHelper.getSESSION_COOKIE_NAME(), sessionId));
             httpExchange.getResponseHeaders().add("Set-Cookie", cookie.get().toString());
-            httpExchange.getResponseHeaders().add("Location", "/static/a");
+            httpExchange.getResponseHeaders().add("Location", "/admin");
 
 
         } catch (NoSuchElementException e) {

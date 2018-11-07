@@ -1,5 +1,6 @@
 package com.codecool.app;
 
+import com.codecool.app.cookies.CookieHelper;
 import com.codecool.app.dao.AppDAOs;
 import com.codecool.app.httphandlers.AdminHandler;
 import com.codecool.app.httphandlers.LoginHandler;
@@ -21,11 +22,13 @@ import java.net.InetSocketAddress;
 import java.util.NoSuchElementException;
 
 public class QuestStore {
+    private final String SESSION_COOKIE_NAME = "sessionId";
     private final String[] MENU_OPTIONS = {"Login", "Exit"};
     private ErrorMessages errorMessages;
     private AppViews appViews;
     private QSView view;
     private AppDAOs appDAOs;
+    private CookieHelper cookieHelper = new CookieHelper(SESSION_COOKIE_NAME);
 
     public QuestStore(AppViews appViews, AppDAOs appDAOs){
         this.appViews = appViews;
@@ -38,9 +41,9 @@ public class QuestStore {
         HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
 
 
-        server.createContext("/", new LoginHandler(appDAOs.getDAOAccounts()));
+        server.createContext("/", new LoginHandler(appDAOs.getDAOAccounts(), cookieHelper));
         server.createContext("/static", new StaticHandler());
-        server.createContext("/admin", new AdminHandler());
+        server.createContext("/admin", new AdminHandler(appDAOs.getDAOAccounts(), cookieHelper));
         server.setExecutor(null);
 
         server.start();

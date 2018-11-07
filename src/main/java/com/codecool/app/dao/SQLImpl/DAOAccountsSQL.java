@@ -37,6 +37,22 @@ public class DAOAccountsSQL implements DAOAccounts {
     }
 
     @Override
+    public Account getAccountBySessionId(String sessionId) {
+        try{
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM accounts WHERE session_id=?");
+            ps.setString(1, sessionId);
+            ResultSet resultSet = ps.executeQuery();
+            if (resultSet.next()){
+                return extractAccountFromResultSet(resultSet);
+            }
+            ps.close();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        throw new NoSuchElementException(new ErrorMessages().getUSER_NOT_REGISTERED_MESSAGE());
+    }
+
+    @Override
     public void insertAccount(Account account) {
         String sql = "INSERT INTO accounts (nick, type, password) VALUES (?, ?, ?)";
         try{
@@ -84,5 +100,15 @@ public class DAOAccountsSQL implements DAOAccounts {
         account.setId(resultSet.getInt("user_id"));
         account.setSessionID(resultSet.getString("session_id"));
         return account;
+    }
+
+    @Override
+    public boolean isValidUserType(String sessionId, String userType) {
+        boolean isValid = false;
+        Account account = getAccountBySessionId(sessionId);
+        if(account.getAccessLevel().toString().equals(userType)){
+            isValid = true;
+        }
+        return isValid;
     }
 }

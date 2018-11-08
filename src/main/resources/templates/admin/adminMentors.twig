@@ -5,5 +5,19 @@
 {% block mentorsBtnClass %}class="active"{% endblock %}
 
 {% block content %}
-    Mentors list here
+    <link rel="stylesheet" href="../static/css/list.css">
+    <list>
+        <form class="search-bar">
+            <p>Search by name:</p>
+            <input type="text"><br>
+            <input type="submit" value="Search">
+        </form>
+        <div class="list">
+            {% for mentor in mentors %}
+                <div class="list-node mentor">
+                    <p>{{mentor.getFirstName()}} {{mentor.getLastName()}}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </list>
 {% endblock %}

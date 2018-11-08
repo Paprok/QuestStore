@@ -21,6 +21,7 @@ list{
     display: block;
     color: white;
     background-color: #4A9ACB;
+    text-decoration: none;
 }
 
 .list-node:hover{

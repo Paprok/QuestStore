@@ -13,11 +13,9 @@
             <input type="submit" value="Search">
         </form>
         <div class="list">
-            <form method="get">
-                <button class="list-node" type="submit" name="addMentor">
-                    <p>  +  Add new mentor</p>
-                </button>
-            </form>
+            <a class="list-node" href="/admin/addMentor">
+                <p>  +  Add new mentor</p>
+            </a>
             {% for mentor in mentors %}
                 <div class="list-node mentor">
                     <p>{{mentor.getFirstName()}} {{mentor.getLastName()}}</p>

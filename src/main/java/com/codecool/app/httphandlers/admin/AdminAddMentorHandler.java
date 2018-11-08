@@ -34,13 +34,12 @@ public class AdminAddMentorHandler implements HttpHandler {
             sessionId = sessionId.replace("\"", "");
 
             if(appDAOs.getDAOAccounts().isValidUserType( sessionId, "ADMIN")) {
-                JtwigTemplate template = JtwigTemplate.classpathTemplate(templatesPaths.ADMIN_MENTORS);
+                JtwigTemplate template = JtwigTemplate.classpathTemplate(templatesPaths.ADMIN_ADD_MENTOR);
                 JtwigModel model = JtwigModel.newModel();
 
                 // Example
                 model.with("userName", appDAOs.getDAOAccounts().getAccountBySessionId(sessionId).getNickname());
 //                model.with("userNickname", "The Lightbringer");
-                model.with("mentors", appDAOs.getDAOMentors().getAllMentors());
 
                 String response = template.render(model);
 
@@ -54,6 +53,8 @@ public class AdminAddMentorHandler implements HttpHandler {
                 httpExchange.sendResponseHeaders(303, 0);
 
             }
+        } else if (method.equals("POST")){
+            
         }
     }
 }

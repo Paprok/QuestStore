@@ -55,7 +55,7 @@ public class DAOCodecoolersSQL implements DAOCodecoolers {
             ps.executeUpdate();
             ps.close();
         } catch (SQLException e){
-            System.out.println("Couldn't insert new Codecooler, check id");
+            System.out.println("Couldn't update new Codecooler, check id");
             e.printStackTrace();
         }
     }
@@ -106,7 +106,7 @@ public class DAOCodecoolersSQL implements DAOCodecoolers {
         return codecoolers;
     }
 
-    private Codecooler extractCodecoolerFromResultSet(ResultSet resultSet) throws SQLException{
+    Codecooler extractCodecoolerFromResultSet(ResultSet resultSet) throws SQLException{
             String name = resultSet.getString("name");
             String surname = resultSet.getString("surname");
             String nickname = resultSet.getString("nick");

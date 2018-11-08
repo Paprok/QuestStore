@@ -92,18 +92,24 @@ public class DAOMentorsSQL implements DAOMentors {
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()) {
-                int id = resultSet.getInt("user_id");
-                String name = resultSet.getString("name");
-                String surname = resultSet.getString("surname");
-                String email = resultSet.getString("email");
-                Mentor mentor =new Mentor(name, surname, email);
-                mentor.setId(id);
-                mentors.add(mentor);
-
+                Mentor mentor = extractMentorFromResultSet(resultSet);
             }
         }catch (SQLException e) {
             System.out.println("Couldn't find mentor with given id");
         }
         return mentors;
+    }
+
+    Mentor extractMentorFromResultSet(ResultSet resultSet) throws SQLException{
+        int id = resultSet.getInt("user_id");
+        String name = resultSet.getString("name");
+        String surname = resultSet.getString("surname");
+        String email = resultSet.getString("email");
+        Mentor mentor = new Mentor();
+        mentor.setId(id);
+        mentor.setFirstName(name);
+        mentor.setLastName(surname);
+        mentor.setEmail(email);
+        return mentor;
     }
 }

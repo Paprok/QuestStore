@@ -2,9 +2,12 @@ package com.codecool.app;
 
 import com.codecool.app.cookies.CookieHelper;
 import com.codecool.app.dao.AppDAOs;
-import com.codecool.app.httphandlers.AdminHandler;
+import com.codecool.app.httphandlers.admin.AdminClassesHandler;
+import com.codecool.app.httphandlers.admin.AdminHandler;
 import com.codecool.app.httphandlers.LoginHandler;
 import com.codecool.app.httphandlers.StaticHandler;
+import com.codecool.app.httphandlers.admin.AdminLevelsHandler;
+import com.codecool.app.httphandlers.admin.AdminMentorsHandler;
 import com.codecool.app.messages.ErrorMessages;
 import com.codecool.app.login.Account;
 import com.codecool.app.login.LoginController;
@@ -14,7 +17,6 @@ import com.codecool.app.user.controller.MentorController;
 import com.codecool.app.user.controller.UserController;
 import com.codecool.app.view.AppViews;
 import com.codecool.app.view.QSView;
-import com.codecool.app.view.consoleimpl.LoginViewConsoleImpl;
 import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;
@@ -43,7 +45,10 @@ public class QuestStore {
 
         server.createContext("/", new LoginHandler(appDAOs.getDAOAccounts(), cookieHelper));
         server.createContext("/static", new StaticHandler());
-        server.createContext("/admin", new AdminHandler(appDAOs.getDAOAccounts(), cookieHelper));
+        server.createContext("/admin", new AdminHandler(appDAOs, cookieHelper));
+        server.createContext("/admin/mentors", new AdminMentorsHandler(appDAOs, cookieHelper));
+        server.createContext("/admin/classes", new AdminClassesHandler(appDAOs, cookieHelper));
+        server.createContext("/admin/levels", new AdminLevelsHandler(appDAOs, cookieHelper));
         server.setExecutor(null);
 
         server.start();

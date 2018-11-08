@@ -72,7 +72,7 @@ public class LoginHandler implements HttpHandler {
             daoAccounts.updateAccount(account.getId(), account);
             Optional<HttpCookie> cookie = Optional.of(new HttpCookie(cookieHelper.getSESSION_COOKIE_NAME(), sessionId));
             httpExchange.getResponseHeaders().add("Set-Cookie", cookie.get().toString());
-            httpExchange.getResponseHeaders().add("Location", "/admin");
+            httpExchange.getResponseHeaders().add("Location", "/admin/profile");
 
 
         } catch (NoSuchElementException e) {

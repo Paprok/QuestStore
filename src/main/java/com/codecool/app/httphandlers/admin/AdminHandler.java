@@ -1,7 +1,9 @@
-package com.codecool.app.httphandlers;
+package com.codecool.app.httphandlers.admin;
 
 import com.codecool.app.cookies.CookieHelper;
+import com.codecool.app.dao.AppDAOs;
 import com.codecool.app.dao.DAOAccounts;
+import com.codecool.app.httphandlers.TemplatesPaths;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import org.jtwig.JtwigModel;
@@ -18,11 +20,11 @@ import java.util.Optional;
 public class AdminHandler implements HttpHandler {
     private TemplatesPaths templatesPaths = new TemplatesPaths();
     private Map<String, String> adminOptions = new LinkedHashMap<>();
-    private DAOAccounts daoAccounts;
+    private AppDAOs appDAOs;
     private CookieHelper cookieHelper;
 
-    public AdminHandler(DAOAccounts daoAccounts, CookieHelper cookieHelper) {
-        this.daoAccounts = daoAccounts;
+    public AdminHandler(AppDAOs appDAOs, CookieHelper cookieHelper) {
+        this.appDAOs = appDAOs;
         this.cookieHelper = cookieHelper;
         initializeAdminOptions();
     }
@@ -46,15 +48,13 @@ public class AdminHandler implements HttpHandler {
             String sessionId = cookie.get().getValue();
             sessionId = sessionId.replace("\"", "");
 
-            if(daoAccounts.isValidUserType( sessionId, "ADMIN")) {
-                JtwigTemplate template = JtwigTemplate.classpathTemplate(templatesPaths.HOME_PAGE_TEMPLATE_PATH);
+            if(appDAOs.getDAOAccounts().isValidUserType( sessionId, "ADMIN")) {
+                JtwigTemplate template = JtwigTemplate.classpathTemplate(templatesPaths.ADMIN_PROFILE);
                 JtwigModel model = JtwigModel.newModel();
 
                 // Example
                 model.with("userName", "Uther");
                 model.with("userNickname", "The Lightbringer");
-                model.with("options", adminOptions);
-                model.with("contentPath", "");
 
                 String response = template.render(model);
 

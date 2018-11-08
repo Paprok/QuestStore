@@ -18,22 +18,12 @@ import java.util.Optional;
 
 public class AdminMentorsHandler implements HttpHandler {
     private TemplatesPaths templatesPaths = new TemplatesPaths();
-    private Map<String, String> adminOptions = new LinkedHashMap<>();
     private AppDAOs appDAOs;
     private CookieHelper cookieHelper;
 
     public AdminMentorsHandler(AppDAOs appDAOs, CookieHelper cookieHelper) {
         this.appDAOs = appDAOs;
         this.cookieHelper = cookieHelper;
-        initializeAdminOptions();
-    }
-
-    private void initializeAdminOptions(){
-        adminOptions.put("Profile", "/admin/profile");
-        adminOptions.put("Mentors", "/admin/mentors");
-        adminOptions.put("Classes", "/admin/classes");
-        adminOptions.put("Levels", "/admin/levels");
-        adminOptions.put("Log out", "/");
     }
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {

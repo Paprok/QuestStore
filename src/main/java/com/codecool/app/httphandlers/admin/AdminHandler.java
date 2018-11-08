@@ -19,22 +19,12 @@ import java.util.Optional;
 
 public class AdminHandler implements HttpHandler {
     private TemplatesPaths templatesPaths = new TemplatesPaths();
-    private Map<String, String> adminOptions = new LinkedHashMap<>();
     private AppDAOs appDAOs;
     private CookieHelper cookieHelper;
 
     public AdminHandler(AppDAOs appDAOs, CookieHelper cookieHelper) {
         this.appDAOs = appDAOs;
         this.cookieHelper = cookieHelper;
-        initializeAdminOptions();
-    }
-
-    private void initializeAdminOptions(){
-        adminOptions.put("Profile", "/admin/profile");
-        adminOptions.put("Mentors", "/admin/mentors");
-        adminOptions.put("Classes", "/admin/classes");
-        adminOptions.put("Levels", "/admin/levels");
-        adminOptions.put("Log out", "/");
     }
 
     @Override

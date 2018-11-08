@@ -53,6 +53,7 @@ public class AdminMentorsHandler implements HttpHandler {
                 // Example
                 model.with("userName", "Uther");
                 model.with("userNickname", "The Lightbringer");
+                model.with("mentors", appDAOs.getDAOMentors().getAllMentors());
 
                 String response = template.render(model);
 

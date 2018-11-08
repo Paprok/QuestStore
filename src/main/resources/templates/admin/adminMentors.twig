@@ -13,6 +13,11 @@
             <input type="submit" value="Search">
         </form>
         <div class="list">
+            <form method="get">
+                <button class="list-node" type="submit" name="addMentor">
+                    <p>  +  Add new mentor</p>
+                </button>
+            </form>
             {% for mentor in mentors %}
                 <div class="list-node mentor">
                     <p>{{mentor.getFirstName()}} {{mentor.getLastName()}}</p>

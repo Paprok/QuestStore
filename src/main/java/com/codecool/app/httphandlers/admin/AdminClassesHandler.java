@@ -37,9 +37,8 @@ public class AdminClassesHandler implements HttpHandler {
                 JtwigTemplate template = JtwigTemplate.classpathTemplate(templatesPaths.ADMIN_CLASSES);
                 JtwigModel model = JtwigModel.newModel();
 
-                // Example
                 model.with("userName", appDAOs.getDAOAccounts().getAccountBySessionId(sessionId).getNickname());
-//                model.with("userNickname", "The Lightbringer");
+                model.with("mentors", appDAOs.getDAOClass);
 
                 String response = template.render(model);
 

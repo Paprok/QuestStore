@@ -39,8 +39,6 @@ public class AdminClassesHandler implements HttpHandler {
         String method = httpExchange.getRequestMethod();
 
         if (method.equals("GET")){
-            // TODO: Check if sessionId stored in cookies is active and user has admin privileges
-            // TODO: should handler use AdminController for better clean code???
             Optional<HttpCookie> cookie = cookieHelper.getSessionIdCookie(httpExchange);
             String sessionId = cookie.get().getValue();
             sessionId = sessionId.replace("\"", "");

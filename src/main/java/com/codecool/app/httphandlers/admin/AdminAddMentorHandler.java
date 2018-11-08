@@ -2,7 +2,6 @@ package com.codecool.app.httphandlers.admin;
 
 import com.codecool.app.cookies.CookieHelper;
 import com.codecool.app.dao.AppDAOs;
-import com.codecool.app.dao.DAOAccounts;
 import com.codecool.app.httphandlers.TemplatesPaths;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -12,16 +11,14 @@ import org.jtwig.JtwigTemplate;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.HttpCookie;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.Optional;
 
-public class AdminMentorsHandler implements HttpHandler {
+public class AdminAddMentorHandler implements HttpHandler {
     private TemplatesPaths templatesPaths = new TemplatesPaths();
     private AppDAOs appDAOs;
     private CookieHelper cookieHelper;
 
-    public AdminMentorsHandler(AppDAOs appDAOs, CookieHelper cookieHelper) {
+    public AdminAddMentorHandler(AppDAOs appDAOs, CookieHelper cookieHelper) {
         this.appDAOs = appDAOs;
         this.cookieHelper = cookieHelper;
     }

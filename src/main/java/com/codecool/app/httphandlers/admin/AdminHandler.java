@@ -2,8 +2,8 @@ package com.codecool.app.httphandlers.admin;
 
 import com.codecool.app.cookies.CookieHelper;
 import com.codecool.app.dao.AppDAOs;
-import com.codecool.app.dao.DAOAccounts;
 import com.codecool.app.httphandlers.TemplatesPaths;
+import com.codecool.app.login.Account;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import org.jtwig.JtwigModel;
@@ -42,26 +42,12 @@ public class AdminHandler implements HttpHandler {
         String method = httpExchange.getRequestMethod();
 
         if (method.equals("GET")){
-            // TODO: Check if sessionId stored in cookies is active and user has admin privileges
-            // TODO: should handler use AdminController for better clean code???
             Optional<HttpCookie> cookie = cookieHelper.getSessionIdCookie(httpExchange);
             String sessionId = cookie.get().getValue();
             sessionId = sessionId.replace("\"", "");
 
             if(appDAOs.getDAOAccounts().isValidUserType( sessionId, "ADMIN")) {
-                JtwigTemplate template = JtwigTemplate.classpathTemplate(templatesPaths.ADMIN_PROFILE);
-                JtwigModel model = JtwigModel.newModel();
-
-                // Example
-                model.with("userName", "Uther");
-                model.with("userNickname", "The Lightbringer");
-
-                String response = template.render(model);
-
-                httpExchange.sendResponseHeaders(200, response.length());
-                OutputStream os = httpExchange.getResponseBody();
-                os.write(response.getBytes());
-                os.close();
+                createAdminResponse(httpExchange, sessionId);
             } else {
                 System.out.println("Unauthorized request for admin");
                 httpExchange.getResponseHeaders().add("Location", "/");
@@ -69,5 +55,19 @@ public class AdminHandler implements HttpHandler {
 
             }
         }
+    }
+
+    private void createAdminResponse(HttpExchange httpExchange, String sessionId) throws IOException{
+        JtwigTemplate template = JtwigTemplate.classpathTemplate(templatesPaths.ADMIN_PROFILE);
+        JtwigModel model = JtwigModel.newModel();
+        // TODO modify dao to request data based on sessionId
+        String nickname = appDAOs.getDAOAccounts().getAccountBySessionId(sessionId).getNickname();
+        model.with("userName", nickname);
+        model.with("userNickname", nickname);
+        String response = template.render(model);
+        httpExchange.sendResponseHeaders(200, response.length());
+        OutputStream os = httpExchange.getResponseBody();
+        os.write(response.getBytes());
+        os.close();
     }
 }

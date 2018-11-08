@@ -106,4 +106,13 @@ public class DAOMentorsSQL implements DAOMentors {
         }
         return mentors;
     }
+
+    Mentor extractMentorFromResultSet(ResultSet resultSet) throws SQLException{
+            Mentor mentor = new Mentor();
+            String name = resultSet.getString("name");
+            String surname = resultSet.getString("surname");
+            String email = resultSet.getString("email");
+            mentor = new Mentor(name, surname, email);
+        return  mentor;
+    }
 }

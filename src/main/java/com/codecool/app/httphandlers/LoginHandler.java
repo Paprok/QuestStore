@@ -1,6 +1,7 @@
 package com.codecool.app.httphandlers;
 
 import com.codecool.app.dao.DAOAccounts;
+import com.codecool.app.login.AccessLevel;
 import com.codecool.app.login.Account;
 import com.codecool.app.cookies.CookieHelper;
 import com.sun.net.httpserver.HttpExchange;
@@ -71,7 +72,11 @@ public class LoginHandler implements HttpHandler {
             daoAccounts.updateAccount(account.getId(), account);
             Optional<HttpCookie> cookie = Optional.of(new HttpCookie(cookieHelper.getSESSION_COOKIE_NAME(), sessionId));
             httpExchange.getResponseHeaders().add("Set-Cookie", cookie.get().toString());
-            httpExchange.getResponseHeaders().add("Location", "/admin/profile");
+            if (account.getAccessLevel() == AccessLevel.ADMIN){
+                httpExchange.getResponseHeaders().add("Location", "/admin/profile");
+            } else if (account.getAccessLevel() == AccessLevel.MENTOR){
+                httpExchange.getResponseHeaders().add("Location", "/mentor/profile");
+            }
 
 
         } catch (NoSuchElementException e) {

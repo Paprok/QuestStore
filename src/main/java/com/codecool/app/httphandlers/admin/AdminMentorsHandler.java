@@ -47,7 +47,7 @@ public class AdminMentorsHandler implements HttpHandler {
 
                 String response = template.render(model);
 
-                httpExchange.sendResponseHeaders(200, response.length());
+                httpExchange.sendResponseHeaders(200, response.getBytes().length);
                 OutputStream os = httpExchange.getResponseBody();
                 os.write(response.getBytes());
                 os.close();
@@ -55,7 +55,6 @@ public class AdminMentorsHandler implements HttpHandler {
                 System.out.println("Unauthorized request for admin");
                 httpExchange.getResponseHeaders().add("Location", "/");
                 httpExchange.sendResponseHeaders(303, 0);
-
             }
         }
     }

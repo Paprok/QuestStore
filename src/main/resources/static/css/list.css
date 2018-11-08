@@ -26,6 +26,11 @@ list p{
     display: block;
     color: white;
     background-color: #4A9ACB;
+    width: 80%;
+}
+
+.list a{
+    width: 30%;
 }
 
 .list-node:hover{

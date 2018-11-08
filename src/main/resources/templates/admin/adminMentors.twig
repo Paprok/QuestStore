@@ -17,9 +17,10 @@
                 <p>  +  Add new mentor</p>
             </a>
             {% for mentor in mentors %}
-                <div class="list-node mentor">
-                    <p>{{mentor.getFirstName()}} {{mentor.getLastName()}}</p>
-                </div>
+                <form>
+                    <input type="text" name="id" style="display: none" value="{{mentor.getId()}}">
+                    <input type="submit" class="list-node mentor" value="{{mentor.getFirstName()}} {{mentor.getLastName()}}"">
+                </form>
             {% endfor %}
         </div>
     </list>

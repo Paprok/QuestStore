@@ -26,11 +26,13 @@
             
             <nav>
                 <ul>
-                    <li><a {% block profileBtnClass %}{% endblock %} href="/admin/profile">Profile</a></li>
-                    <li><a {% block mentorsBtnClass %}{% endblock %} href="/admin/mentors">Mentors</a></li>
-                    <li><a {% block classesBtnClass %}{% endblock %} href="/admin/classes">Classes</a></li>
-                    <li><a {% block levelsBtnClass %}{% endblock %} href="/admin/levels">Levels</a></li>
-                    <li><a href="/">Log out</a></li>
+                    {% block nav %}
+                        <li><a {% block profileBtnClass %}{% endblock %} href="/admin/profile">Profile</a></li>
+                        <li><a {% block mentorsBtnClass %}{% endblock %} href="/admin/mentors">Mentors</a></li>
+                        <li><a {% block classesBtnClass %}{% endblock %} href="/admin/classes">Classes</a></li>
+                        <li><a {% block levelsBtnClass %}{% endblock %} href="/admin/levels">Levels</a></li>
+                        <li><a href="/">Log out</a></li>
+                    {% endblock %}
                 </ul>
             </nav>
             <content>

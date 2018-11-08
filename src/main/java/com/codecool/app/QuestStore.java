@@ -5,6 +5,7 @@ import com.codecool.app.dao.AppDAOs;
 import com.codecool.app.httphandlers.admin.*;
 import com.codecool.app.httphandlers.LoginHandler;
 import com.codecool.app.httphandlers.StaticHandler;
+import com.codecool.app.httphandlers.mentor.MentorHandler;
 import com.codecool.app.messages.ErrorMessages;
 import com.codecool.app.login.Account;
 import com.codecool.app.login.LoginController;
@@ -47,6 +48,7 @@ public class QuestStore {
         server.createContext("/admin/addMentor", new AdminAddMentorHandler(appDAOs, cookieHelper));
         server.createContext("/admin/classes", new AdminClassesHandler(appDAOs, cookieHelper));
         server.createContext("/admin/levels", new AdminLevelsHandler(appDAOs, cookieHelper));
+        server.createContext("/mentor/profile", new MentorHandler(appDAOs, cookieHelper));
         server.setExecutor(null);
 
         server.start();

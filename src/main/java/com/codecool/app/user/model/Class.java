@@ -6,6 +6,7 @@ public class Class {
     private List<Mentor> mentors;
     private List<Codecooler> codecoolers;
     private String name;
+    private int class_id;
 
     public Class() {}
 
@@ -36,5 +37,13 @@ public class Class {
 
     public String getName() {
         return name;
+    }
+
+    public int getClass_id() {
+        return class_id;
+    }
+
+    public void setClass_id(int class_id) {
+        this.class_id = class_id;
     }
 }

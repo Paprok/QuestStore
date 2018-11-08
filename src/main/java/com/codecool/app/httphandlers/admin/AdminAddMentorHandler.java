@@ -43,6 +43,7 @@ public class AdminAddMentorHandler implements HttpHandler {
                 // Example
                 model.with("userName", appDAOs.getDAOAccounts().getAccountBySessionId(sessionId).getNickname());
 //                model.with("userNickname", "The Lightbringer");
+                model.with("mentors", appDAOs.getDAOMentors().getAllMentors());
 
                 String response = template.render(model);
 

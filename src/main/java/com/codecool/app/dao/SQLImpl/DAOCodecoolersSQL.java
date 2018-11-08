@@ -106,7 +106,7 @@ public class DAOCodecoolersSQL implements DAOCodecoolers {
         return codecoolers;
     }
 
-    private Codecooler extractCodecoolerFromResultSet(ResultSet resultSet) throws SQLException{
+    Codecooler extractCodecoolerFromResultSet(ResultSet resultSet) throws SQLException{
             String name = resultSet.getString("name");
             String surname = resultSet.getString("surname");
             String nickname = resultSet.getString("nick");

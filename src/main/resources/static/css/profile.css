@@ -3,7 +3,7 @@ profile{
     flex-direction: column;
 }
 
-#nickname{
+profile #nickname{
     display: flex;
 }
 
@@ -11,19 +11,19 @@ profile{
     display: none
 }
 
-.logged-user{
+profile .logged-user{
     display: flex;
     justify-content: space-between;
 }
 
-.user-info{
+profile .user-info{
     margin-left: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
 
-.user-info p{
+profile .user-info p{
     margin: 0;
     display: block;
 }
@@ -45,7 +45,7 @@ profile{
     justify-content: center;
 }
 
-.column{
+profile .column{
     display: flex;
     flex-direction: column;
     align-items: center;

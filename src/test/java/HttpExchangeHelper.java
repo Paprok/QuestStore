@@ -1,4 +1,4 @@
-package com.codecool.app.httphandlers;
+
 
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpContext;

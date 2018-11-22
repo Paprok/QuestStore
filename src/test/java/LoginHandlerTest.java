@@ -1,7 +1,6 @@
-package com.codecool.app.httphandlers;
-
 import com.codecool.app.cookies.CookieHelper;
 import com.codecool.app.dao.DAOAccounts;
+import com.codecool.app.httphandlers.LoginHandler;
 import com.codecool.app.login.AccessLevel;
 import com.codecool.app.login.Account;
 import com.codecool.app.messages.ErrorMessages;

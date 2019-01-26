@@ -1,9 +1,9 @@
 package com.codecool.app.httphandlers;
 
+import com.codecool.app.cookies.CookieHelper;
 import com.codecool.app.dao.DAOAccounts;
 import com.codecool.app.login.AccessLevel;
 import com.codecool.app.login.Account;
-import com.codecool.app.cookies.CookieHelper;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
@@ -19,7 +19,6 @@ public class LoginHandler implements HttpHandler {
 
     public LoginHandler(DAOAccounts daoAccounts, CookieHelper cookieHelper) {
         this.daoAccounts = daoAccounts;
-        this.cookieHelper = cookieHelper;
         this.cookieHelper = cookieHelper;
     }
 
@@ -41,7 +40,6 @@ public class LoginHandler implements HttpHandler {
         String response = "";
         ClassLoader classLoader = getClass().getClassLoader();
         File loginPage = new File(classLoader.getResource(LOGIN_PAGE_URL).getFile());
-
         try (Scanner scanner = new Scanner(loginPage)){
             while (scanner.hasNextLine()){
                 String line = scanner.nextLine();
@@ -60,26 +58,23 @@ public class LoginHandler implements HttpHandler {
         InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody(), "utf-8");
         BufferedReader br = new BufferedReader(isr);
         String formData = br.readLine();
-        System.out.println(formData);
         Map inputs = parseFormData(formData);
         String password = (String) inputs.get("password");
         String nick = (String) inputs.get("nick");
-        System.out.println(nick + " " + password);
-        try {
-            Account account = daoAccounts.getAccountByNicknameAndPassword(nick, password);
+        Account account = daoAccounts.getAccountByNicknameAndPassword(nick, password);
+        if(account.getAccessLevel() != AccessLevel.NOBODY) {
             String sessionId = UUID.randomUUID().toString();
             account.setSessionID(sessionId);
             daoAccounts.updateAccount(account.getId(), account);
             Optional<HttpCookie> cookie = Optional.of(new HttpCookie(cookieHelper.getSESSION_COOKIE_NAME(), sessionId));
             httpExchange.getResponseHeaders().add("Set-Cookie", cookie.get().toString());
-            if (account.getAccessLevel() == AccessLevel.ADMIN){
+            if (account.getAccessLevel() == AccessLevel.ADMIN) {
                 httpExchange.getResponseHeaders().add("Location", "/admin/profile");
-            } else if (account.getAccessLevel() == AccessLevel.MENTOR){
+            } else if (account.getAccessLevel() == AccessLevel.MENTOR) {
                 httpExchange.getResponseHeaders().add("Location", "/mentor/profile");
             }
-
-
-        } catch (NoSuchElementException e) {
+        }
+        else{
             httpExchange.getResponseHeaders().add("Location", "/");
         }
         httpExchange.sendResponseHeaders(303, 0);
